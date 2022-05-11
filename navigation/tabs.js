@@ -76,9 +76,6 @@ if(isSelected) {
                 onPress = {onPress}
                 >
                     {children}
-
-
-
                 </TouchableOpacity>
 
             );

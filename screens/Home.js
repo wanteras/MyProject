@@ -12,9 +12,7 @@ import {
 import {COLORS, icons, FONTS, SIZES, images} from "../constants";
 
 
-
-
-const Home = () => {
+const Home = ({ navigation }) => {
 
     const initialCurrentLocation = {
 
@@ -89,7 +87,6 @@ const Home = () => {
     const affordable = 1
     const fairPrice = 2
     const expensive = 3
-
 
 const restaurantData = [
 
@@ -175,7 +172,7 @@ const restaurantData = [
                 menuId:5,
                 name:"Tomato & Basil Pizza",
                 photo: images.pizza,
-                description: "Fresh tomatoes, aromatic basil pesto and melted bocconcini ",
+                description: "Fresh tomatoes, aromatic basil pesto and melted Bocconcini ",
                 calories:250,
                 price:20
             },
@@ -402,7 +399,7 @@ const restaurantData = [
 const [categories,setCategories] = React.useState(categoryData)
 const [selectedCategory,setSelectedCategory] = React.useState(null)
 const [restaurants,setRestaurants] = React.useState(restaurantData)
-//const {currentLocation, setCurrentLocation} = React.useState[initialCurrentLocation]
+const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation)
 
 
 function onSelectCategory(category){
@@ -424,11 +421,13 @@ function getCategoryNameById(id){
 }
 
 function renderRestaurantList() {
-
     const renderItem = ({item}) => (
-
         <TouchableOpacity
-        style = {{marginBottom: SIZES.padding * 2 }}>
+        style = {{marginBottom: SIZES.padding * 2 }}
+            onPress = { () => navigation.navigate("Restaurant",{
+                item,
+                currentLocation
+            }) }>
 
             <View style = {{marginBottom: SIZES.padding   }}>
                 <Image
